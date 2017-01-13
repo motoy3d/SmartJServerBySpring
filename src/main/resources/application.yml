@@ -1,0 +1,13 @@
+server:
+  context-path: /redsmylife 
+  
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/redsmylife
+    username: redsmylife
+    password: redsmylife
+    driverClassName: com.mysql.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

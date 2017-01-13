@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mobi.smartj.mapper.NewsEntryMapper">
+    <select id="select" resultType="mobi.smartj.model.NewsEntry">
+SELECT
+	entry_id
+	, entry_url
+	, entry_title
+	, content
+	, site_name
+	, DATE_FORMAT(published_date, '%Y/%m/%d %T') published_date
+	, UNIX_TIMESTAMP(published_date) as published_date_num
+	, IFNULL(image_url, '') image_url
+	, image_width
+	, image_height
+ FROM ${table}
+ WHERE feed_id NOT IN (SELECT feed_id FROM ${avoidTable})
+<choose>
+	<when test="maxDatetime != 0">
+		AND published_date &lt; FROM_UNIXTIME(#{maxDatetime}) <!-- maxより古いデータを読み込む -->
+	</when>
+	<when test="minDatetime != 0">
+		AND published_date > FROM_UNIXTIME(#{minDatetime}) <!-- minより新しいデータを読み込む -->
+	</when>
+</choose>
+	ORDER BY published_date DESC LIMIT #{count};
+    </select>
+</mapper>
