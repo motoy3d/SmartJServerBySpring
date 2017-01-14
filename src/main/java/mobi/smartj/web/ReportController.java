@@ -16,7 +16,7 @@ public class ReportController {
 	/**
 	 * ユーザーからの報告受付
 	 */
-	@GetMapping(value = "/news.json")
+	@GetMapping(value = "/report.json")
 	public String find(String userId, String url, String type) {
 		logger.info("ユーザーからの報告.  userId=" + userId + ", url=" + url + ", type=" + type);
 		return "ok";
