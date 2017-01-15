@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,18 +35,18 @@ public class ConfigController {
 	private NgSiteMapper ngSiteMapper;
 	
 	@GetMapping(value = "/config.json")
-	public List<Map<String, Object>> find(String os, String osVersion, String teamId, String appVersion
+	public List<Map<String, Object>> find(String os, String osversion, String teamId, String appversion
 			, String version) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		logger.info("os={} osversion={} teamId={}", os, osVersion, teamId);
-		if (StringUtils.isBlank(osVersion)) {
-			osVersion = version;		//古いアプリへの対応
+		logger.info("os={} osversion={} teamId={}", os, osversion, teamId);
+		if (StringUtils.isBlank(osversion)) {
+			osversion = version;		//古いアプリへの対応
 		}
 //TODO アプリバージョンによるメッセージ判定			
-		if (StringUtils.isBlank(appVersion)) {
-			appVersion = "1.0.0";
+		if (StringUtils.isBlank(appversion)) {
+			appversion = "1.0.0";
 		}
-		List<Message> messageList = messageMapper.select(os, appVersion, teamId);
+		List<Message> messageList = messageMapper.select(os, appversion, teamId);
 		if (messageList != null && !messageList.isEmpty()) {
 			result.put("message", messageList.get(0).getMessage());
 		}

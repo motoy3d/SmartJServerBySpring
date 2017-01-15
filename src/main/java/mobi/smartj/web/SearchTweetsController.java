@@ -15,11 +15,11 @@ import mobi.smartj.model.Tweet;
 public class SearchTweetsController extends AbstractTweetsController {
 	
 	/**
-	 * 検索対象テーブル名を返す (searchTweets or playerTweets)
+	 * 検索対象テーブル名を返す (SearchTweets or PlayerTweets)
 	 * @return
 	 */
 	public String getTarget() {
-		return "searchTweets";
+		return "SearchTweets";
 	}
 
 	@GetMapping(value = "/searchTweets.json")

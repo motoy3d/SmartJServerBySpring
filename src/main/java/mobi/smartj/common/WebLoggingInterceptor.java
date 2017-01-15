@@ -51,7 +51,6 @@ public class WebLoggingInterceptor extends HandlerInterceptorAdapter {
 			sw.stop();
 		} catch(IllegalStateException iex) {
 			sw.reset();
-			sw.stop();
 		}
 		if (ex != null) {
 			logger.error("★★★★★★★★★★★★エラー発生");

@@ -19,7 +19,7 @@ public abstract class AbstractTweetsController {
 	private TweetsMapper tweetsMapper;
 	
 	/**
-	 * 検索対象テーブル名を返す (searchTweets or playerTweets)
+	 * 検索対象テーブル名を返す (SearchTweets or PlayerTweets)
 	 * @return
 	 */
 	public abstract String getTarget();

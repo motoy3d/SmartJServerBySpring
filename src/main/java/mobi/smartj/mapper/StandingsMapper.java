@@ -13,6 +13,7 @@ public interface StandingsMapper {
 			@Param("season") String season
 			,@Param("teamId") String teamId
 			,@Param("sort") String sort
+			,@Param("stage") String stage
 			);
 
 	List<Standings> selectForLevain(

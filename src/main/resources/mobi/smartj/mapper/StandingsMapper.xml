@@ -5,6 +5,9 @@
 		SELECT *, team_name AS team FROM standings WHERE
 		season=#{season}
 		AND league=(select category from teamMaster where team_id=#{teamId})
+		<if test="stage != null">
+		AND stage=#{stage}	-- ２ステージ制対応
+		</if>
 		ORDER BY ${sort}
     </select>
     <select id="selectForLevain" resultType="mobi.smartj.model.Standings">

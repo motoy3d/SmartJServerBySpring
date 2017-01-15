@@ -1,4 +1,4 @@
-package mobi.smartj;
+package mobi.smartj.common;
 
 /**
  * 定数定義　//TODO 開幕日のDB化

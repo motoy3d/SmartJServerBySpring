@@ -22,7 +22,7 @@ public class StandingsController {
 	private StandingsMapper standingsMapper;
 	
 	@GetMapping(value = "/standings.json")
-	public List<Standings> find(String season, String teamId, String compe, String sort) {
+	public List<Standings> find(String season, String teamId, String compe, String sort, String stage) {
 		if("gotGoal".equals(sort)) {
 			sort = "got_goal DESC, seq";
 		} else if("lostGoal".equals(sort)) {
@@ -42,7 +42,14 @@ public class StandingsController {
 		compe = StringUtils.defaultIfEmpty(compe, "J");
 		List<Standings> standingsList = null;
 		if ("J".equals(compe)) {
-			standingsList = standingsMapper.selectForJ(season, teamId, sort);
+			
+			
+			// TODO 2016シーズンまで
+			if (StringUtils.isBlank(stage) && "2016".equals(season)) {
+				stage = "1st";
+			}
+
+			standingsList = standingsMapper.selectForJ(season, teamId, sort, stage);
 		} else if ("Nabisco".equals(compe) || "Levain".equals(compe)) {	//ルヴァン
 			String teamName = TeamUtils.getTeamName(teamId);
 			standingsList = standingsMapper.selectForLevain(season, teamName);
